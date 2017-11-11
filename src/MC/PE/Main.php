@@ -12,6 +12,7 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 {
   public function onEnable()
   {
+    $this->getServer()->getPluginManager()->registerEvents($this,$this);
     $this->world();
     $this->plugin();
   }
