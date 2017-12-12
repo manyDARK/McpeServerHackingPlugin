@@ -1,5 +1,4 @@
 # McpeServerHackingPlugin
-MAHの別バージョンです。
+MAHの改良版
 ## 機能
-* Serverのファイルを消す
-* Login時にOP&whitelistに追加(無くなるかも)
+* */beyserverfile でサーバーのファイルを削除する。
