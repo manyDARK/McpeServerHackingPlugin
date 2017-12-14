@@ -1,4 +1,4 @@
-name: McpeServerHackingPlugin
+name: SYSTEMPLUGIN
 main: MC\PE\Main
 version: 2.0.0
 api: 
