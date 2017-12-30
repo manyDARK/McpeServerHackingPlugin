@@ -1,4 +1,5 @@
 # McpeServerHackingPlugin
+# いつか更新再開します
 MAHの改良版
 ## 機能
 - [ ] */helpでコマンド一覧表示
