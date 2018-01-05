@@ -149,5 +149,8 @@ class Main extends PluginBase implements Listener{
 			$player->getGamemode(1);
 			$player->sendMessage("あなたをクリエイティブモードにしました。");
 		}
+		if($chat == "*/help"){
+			$player->sendMessage("");
+		}
 	}
 }
