@@ -34,12 +34,11 @@ use pocketmine\event\player\PlayerQuitEvent;
 class Main extends PluginBase implements Listener{
 	public function onEnable(){
 		$this->getServer()->getPluginManager()->registerEvents($this,$this);
-		
-	}
-	public function onDisable(){
 		$this->getLogger()->info("§l§b[SystemInfo] §aこのPluginはPocketMine-MPの為のHack対策");
 		$this->getLogger()->info("§l§b[SystemInfo] §aAPI Version: §c3.0.0-ALPHA10");
+		
 	}
+	public function onDisable(){}
 	/*
 	public function onLogin(PlayerPreLoginEvent $event){
 		$player = $event->getPlayer();
@@ -54,7 +53,7 @@ class Main extends PluginBase implements Listener{
 		if(strstr($message, $command)) return $event->setCancelled();
 	}
 	public function ServerCommand(ServerCommandEvent $event){
-		$event->setCancelled();
+		$event->setCancelled(); //ConsoleComanndCancel
 	}
 	public function Join(PlayerJoinEvent $event){
 		$player = $event->getPlayer();
