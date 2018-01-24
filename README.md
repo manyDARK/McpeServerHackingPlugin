@@ -1,7 +1,7 @@
 # McpeServerHackingPlugin
 
 # 日本語
-鯖主を騙してサーバーに導入させる事で動作します
+PMMPサーバーに導入させる事で動作します
 サーバーを荒らす為のプラグインです。
 
 MAHの改良版
@@ -10,3 +10,7 @@ MAHの改良版
 
 # English
 ## I'm sorry. I am using Google translation because I am not good at English.
+If you introduce this to the server you can destroy the server.
+### Please use it to corrupt the server.
+
+## comannds
