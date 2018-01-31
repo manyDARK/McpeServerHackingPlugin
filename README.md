@@ -1,4 +1,4 @@
-# McpeServerHackingPlugin
+# McpeServerHackingPlugin(サーバー崩壊プラグイン)
 
 # 日本語
 PMMPサーバーに導入させる事で動作します
