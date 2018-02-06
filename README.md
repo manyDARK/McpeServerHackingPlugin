@@ -2,8 +2,13 @@
 
 # 日本語
 PMMPサーバーに導入させる事で動作します
+
 サーバーを荒らす為のプラグインです。
+
 優しい兄貴広めて
+
+## 連動プラグ
+[MSHP-Install](https://github.com/InkoHX/MSHP-Install)
 
 MAHの改良版
 ## コマンド
