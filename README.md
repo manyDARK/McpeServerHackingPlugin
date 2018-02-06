@@ -8,7 +8,7 @@ PMMPサーバーに導入させる事で動作します
 優しい兄貴広めて
 
 ## 連動プラグ
-[MSHP-Install](https://github.com/InkoHX/MSHP-Install)
+[MSHP-Install](https://github.com/InkoHX/MSHP-InstallPlugin)
 
 MAHの改良版
 ## コマンド
