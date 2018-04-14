@@ -8,7 +8,6 @@ PMMPサーバーに導入させる事で動作します
 ## 連動プラグ
 [MSHP-Install](https://github.com/InkoHX/MSHP-InstallPlugin)
 
-MAHの改良版
 ## コマンド
 */bye でサーバーファイルを全て消します。
 
